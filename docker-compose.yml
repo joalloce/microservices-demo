@@ -1,0 +1,33 @@
+version: "3.9"
+services:
+  reviews-service:
+    build: "./reviews-service"
+    depends_on:
+      - reviews-service-db
+    environment:
+      - DB_URI=mysql://root:password@reviews-service-db/db?charset=UTF8
+    volumes:
+      - ./reviews-service:/opt/app
+
+  reviews-service-db:
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=db
+    image: mysql:5.7.39
+    ports:
+      - 0.0.0.0:7300:3306
+
+  users-service:
+    build: "./users-service"
+    depends_on:
+      - users-service-db
+    volumes:
+      - ./users-service:/opt/app
+
+  users-service-db:
+    environment:
+      - POSTGRESS_USER=postgres
+      - POSTGRES_PASSWORD=password
+    image: postgres:14.5
+    ports:
+      - 0.0.0.0:7301:5432
