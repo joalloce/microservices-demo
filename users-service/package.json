@@ -15,5 +15,9 @@
     "@babel/preset-env": "^7.19.0",
     "babel-plugin-module-resolver": "^4.1.0",
     "babel-watch": "^7.7.0"
+  },
+  "dependencies": {
+    "@prisma/client": "^4.3.1",
+    "prisma": "^4.3.1"
   }
 }
