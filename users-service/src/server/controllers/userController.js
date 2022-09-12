@@ -5,6 +5,7 @@ import passwordCompareSync from "#root/helpers/passwordCompareSync";
 
 const { user } = new PrismaClient();
 
+//login, return user if email and password are ok
 export const login = async (req, res, next) => {
   try {
     const { email, password } = req.body;
@@ -17,8 +18,6 @@ export const login = async (req, res, next) => {
 
     if (!userFetched) return next(new Error("Invalid email"));
 
-    console.log("login", userFetched.passwordHash, password);
-
     if (!passwordCompareSync(password, userFetched.passwordHash)) {
       return next(new Error("Invalid password"));
     }
@@ -29,6 +28,7 @@ export const login = async (req, res, next) => {
   }
 };
 
+// get all users (testing)
 export const getUsers = async (req, res, next) => {
   try {
     let users = await user.findMany({
@@ -36,7 +36,6 @@ export const getUsers = async (req, res, next) => {
         id: true,
         name: true,
         email: true,
-        passwordHash: true,
       },
     });
 
@@ -46,19 +45,18 @@ export const getUsers = async (req, res, next) => {
   }
 };
 
+// create user (sign up)
 export const createUser = async (req, res, next) => {
   try {
     const { email, name, password } = req.body;
-    let passwordHash = hashPassword(password);
+
     let newUser = await user.create({
       data: {
         name,
-        passwordHash,
+        passwordHash: hashPassword(password),
         email,
       },
     });
-
-    console.log("checking", passwordCompareSync(password, passwordHash));
 
     return res.json(newUser);
   } catch (e) {

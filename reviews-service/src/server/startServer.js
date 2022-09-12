@@ -8,6 +8,7 @@ const PORT = accessEnv("PORT", 7200);
 
 const app = express();
 
+//middlewares
 app.use(
   cors({
     origin: (origin, cb) => cb(null, true),
@@ -17,7 +18,8 @@ app.use(
 
 app.use(express.json());
 
-app.use("api/reviews", router);
+//review router
+app.use("/api/reviews", router);
 
 app.listen(PORT, () => {
   console.log(`reviews-service listening on port ${PORT}`);

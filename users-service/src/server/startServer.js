@@ -8,6 +8,7 @@ const app = express();
 
 const PORT = accessEnv("PORT", 7201);
 
+//middlewares
 app.use(
   cors({
     origin: (origin, cb) => cb(null, true),
@@ -17,6 +18,7 @@ app.use(
 
 app.use(express.json());
 
+//user router
 app.use("/api/users", router);
 
 app.listen(PORT, () => {

@@ -10,6 +10,7 @@ datasource db {
   url      = "postgres://postgres:password@users-service-db/db?schema=public"
 }
 
+// user model
 model User {
   id            Int       @id @default(autoincrement())
   email         String    @unique
