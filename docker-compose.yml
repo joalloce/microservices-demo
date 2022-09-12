@@ -6,6 +6,8 @@ services:
       - reviews-service-db
     environment:
       - DB_URI=mysql://root:password@reviews-service-db/db?charset=UTF8
+    ports:
+      - 7200:7200
     volumes:
       - ./reviews-service:/opt/app
 
@@ -22,7 +24,9 @@ services:
     depends_on:
       - users-service-db
     environment:
-      - DB_URI="postgres://postgres:password@users-service-db/db"
+      - DB_URI=postgres://postgres:password@users-service-db/db?schema=public
+    ports:
+      - 7201:7201
     volumes:
       - ./users-service:/opt/app
 

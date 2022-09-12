@@ -1,3 +1,3 @@
-import path from "path";
+import "@babel/polyfill";
 
-console.log("reviews-service is working");
+import "#root/server/startServer";
