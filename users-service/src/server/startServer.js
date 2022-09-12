@@ -2,6 +2,7 @@ import cors from "cors";
 import express from "express";
 
 import accessEnv from "#root/helpers/accessEnv";
+import router from "#root/server/routes/users";
 
 const app = express();
 
@@ -15,6 +16,8 @@ app.use(
 );
 
 app.use(express.json());
+
+app.use("/api/users", router);
 
 app.listen(PORT, () => {
   console.log(`users-service listening on port ${PORT}`);
