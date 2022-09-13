@@ -6,3 +6,67 @@ body {
   margin: 0;
   font-family: "Open Sans";
 }
+
+header {
+  background: #f1f1f1;
+}
+
+header a {
+  color: grey;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+header div {
+  color: grey;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+header .container {
+  max-width: 1500px;
+  margin: 0 auto;
+  padding: 30px 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.pages {
+  max-width: 1500px;
+  padding: 30;
+  margin: 0 auto;
+}
+
+.home {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  gap: 50px;
+}
+
+.home button {
+  background: #ddd;
+  border: 0;
+  padding: 10px;
+  cursor: pointer;
+  font-family: "Open Sans";
+}
+
+.review-details {
+  background: #f1f1f1;
+  border-radius: 4px;
+  margin: 20px auto;
+  padding: 20px;
+  position: relative;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
+}
+
+.review-details h4 {
+  margin: 0 0 10px 0;
+  font-size: 1.2em;
+}
+
+.review-details p {
+  margin: 0;
+  color: #555;
+}

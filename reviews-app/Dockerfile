@@ -1,8 +1,8 @@
 FROM node:16
 
-COPY . /opt/app
+COPY . /usr/app
 
-WORKDIR /opt/app
+WORKDIR /usr/app
 
 RUN npm install
 
