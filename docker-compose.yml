@@ -13,6 +13,15 @@ services:
     volumes:
       - ./api-gateway:/opt/app
 
+  reviews-app:
+    build: "./reviews-app"
+    depends_on:
+      - api-gateway
+    ports:
+      - 7000:3000
+    volumes:
+      - ./reviews-app:/opt/app
+
   reviews-service:
     build: "./reviews-service"
     depends_on:
