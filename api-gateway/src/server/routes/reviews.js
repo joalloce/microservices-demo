@@ -19,10 +19,10 @@ router.get("/:id", getReview);
 router.get("/", getReviews);
 
 // id params
-// score, title, and user body
+// title and score body
 router.patch("/:id", updateReview);
 
-// score, title, and user body
+// title and score body
 router.post("/", createReview);
 
 export default router;

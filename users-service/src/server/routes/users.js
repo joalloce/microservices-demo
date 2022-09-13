@@ -11,7 +11,7 @@ const router = express.Router();
 router.get("/", getUsers);
 
 // email and password body
-router.get("/login", login);
+router.post("/login", login);
 
 // email, name, and password body
 router.post("/", createUser);

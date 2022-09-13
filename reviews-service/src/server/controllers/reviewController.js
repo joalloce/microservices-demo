@@ -2,8 +2,8 @@ import { Review } from "#root/db/models/reviewModel";
 
 export const createReview = async (req, res, next) => {
   try {
-    const { title, score } = req.body;
-    const review = await Review.create({ title, score });
+    const { title, score, user } = req.body;
+    const review = await Review.create({ title, score, user });
     return res.json(review);
   } catch (e) {
     return next(e);
@@ -39,10 +39,10 @@ export const getReviews = async (req, res, next) => {
 
 export const updateReview = async (req, res, next) => {
   try {
-    const { title, score } = req.body;
+    const { title, score, user } = req.body;
     const { id } = req.params;
     const ok = await Review.update(
-      { title, score },
+      { title, score, user },
       {
         where: {
           id,

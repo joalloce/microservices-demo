@@ -14,6 +14,10 @@ Review.init(
       allowNull: false,
       type: DataTypes.DECIMAL,
     },
+    user: {
+      allowNull: false,
+      type: DataTypes.INTEGER,
+    },
   },
   { sequelize, modelName: "review" }
 );

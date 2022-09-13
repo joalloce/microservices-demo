@@ -1,5 +1,18 @@
 version: "3.9"
 services:
+  api-gateway:
+    build: "./api-gateway"
+    depends_on:
+      - reviews-service
+      - users-service
+    environment:
+      - REVIEWS_SERVICE_URI=http://reviews-service:7200/api/reviews/
+      - USERS_SERVICE_URI=http://users-service:7201/api/users/
+    ports:
+      - 7100:7100
+    volumes:
+      - ./api-gateway:/opt/app
+
   reviews-service:
     build: "./reviews-service"
     depends_on:
