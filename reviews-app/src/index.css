@@ -43,6 +43,7 @@ nav a {
 nav button {
   background: #ddd;
   border: 0;
+  margin-left: 15px;
   padding: 10px;
   cursor: pointer;
   font-family: "Open Sans";

@@ -46,6 +46,30 @@ export const getUsers = async (req, res, next) => {
   }
 };
 
+// get user by id (auth)
+export const getUser = async (req, res, next) => {
+  const { id } = req.params;
+
+  try {
+    let userFetched = await user.findUnique({
+      select: {
+        id: true,
+        name: true,
+        email: true,
+      },
+      where: {
+        id: parseInt(id),
+      },
+    });
+
+    if (!userFetched) return next(new Error("Invalid id"));
+
+    return res.json(userFetched);
+  } catch (e) {
+    return next(e);
+  }
+};
+
 // create user (sign up)
 export const createUser = async (req, res, next) => {
   try {

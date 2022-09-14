@@ -1,6 +1,7 @@
 import axios from "axios";
-import accessEnv from "#root/helpers/accessEnv";
 import jwt from "jsonwebtoken";
+
+import accessEnv from "#root/helpers/accessEnv";
 
 const USERS_SERVICE_URI = accessEnv(
   "USERS_SERVICE_URI",

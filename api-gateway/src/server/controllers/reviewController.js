@@ -1,4 +1,5 @@
 import axios from "axios";
+
 import accessEnv from "#root/helpers/accessEnv";
 
 const REVIEWS_SERVICE_URI = accessEnv(
@@ -9,14 +10,17 @@ const REVIEWS_SERVICE_URI = accessEnv(
 export const createReview = async (req, res, next) => {
   try {
     const { title, score, user } = req.body;
+
     let emptyFields = [];
 
     if (!title) {
       emptyFields.push("title");
     }
+
     if (score < -1 && score > 10) {
       emptyFields.push("score");
     }
+
     if (emptyFields.length) {
       return res
         .status(400)
@@ -59,7 +63,9 @@ export const getReviews = async (req, res, next) => {
   try {
     let response = await axios.get(`${REVIEWS_SERVICE_URI}`);
 
-    return res.json(response.data);
+    let userReviews = response.data.filter((r) => r.user === req.user.id);
+
+    return res.json(userReviews);
   } catch (e) {
     return next(e);
   }
@@ -70,14 +76,17 @@ export const updateReview = async (req, res, next) => {
     const { id } = req.params;
 
     const { title, score, user } = req.body;
+
     let emptyFields = [];
 
     if (!title) {
       emptyFields.push("title");
     }
+
     if (score < -1 && score > 10) {
       emptyFields.push("score");
     }
+
     if (emptyFields.length) {
       return res
         .status(400)

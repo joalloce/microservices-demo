@@ -7,8 +7,11 @@ import {
   getReviews,
   updateReview,
 } from "#root/server/controllers/reviewController";
+import { requireAuth } from "../../middleware/requireAuth";
 
 const router = express.Router();
+
+router.use(requireAuth);
 
 // id params
 router.delete("/:id", deleteReview);

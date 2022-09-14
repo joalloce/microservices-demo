@@ -1,9 +1,12 @@
 import { useState } from "react";
 
+import { useAuthContext } from "../hooks/useAuthContext";
 import { useReviewContext } from "../hooks/useReviewContext";
 
 const ReviewForm = () => {
+  const { user } = useAuthContext();
   const { dispatch } = useReviewContext();
+
   const [title, setTitle] = useState("");
   const [score, setScore] = useState(0);
   const [error, setError] = useState("");
@@ -11,13 +14,18 @@ const ReviewForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    let user = 1; //have to change later
-    const review = { title, score, user };
+
+    if (!user) {
+      setError("You must be logged in");
+    }
+
+    const review = { title, score, user: user.id };
     const response = await fetch("http://localhost:7100/api/reviews/", {
       method: "POST",
       body: JSON.stringify(review),
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${user.token}`,
       },
     });
     const json = await response.json();
@@ -37,7 +45,7 @@ const ReviewForm = () => {
   };
   return (
     <form className="form" onSubmit={handleSubmit}>
-      <h3>Add new review</h3>
+      <h3>Add a new review</h3>
       <label>Title:</label>
       <input
         type="text"
