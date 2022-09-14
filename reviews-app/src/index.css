@@ -8,7 +8,7 @@ body {
 }
 
 header {
-  background: #f1f1f1;
+  background: #f7f7f7;
 }
 
 header a {
@@ -42,6 +42,7 @@ header .container {
   display: grid;
   grid-template-columns: 3fr 1fr;
   gap: 50px;
+  margin-top: 20px;
 }
 
 .home button {
@@ -52,11 +53,19 @@ header .container {
   font-family: "Open Sans";
 }
 
+.reviews {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 30px;
+}
+
 .review-details {
-  background: #f1f1f1;
+  width: 100%;
+  height: 100px;
+  background: #f2f2f2;
   border-radius: 4px;
-  margin: 20px auto;
-  padding: 20px;
+  margin: 10px;
+  padding: 10px;
   position: relative;
   box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
 }
@@ -69,4 +78,71 @@ header .container {
 .review-details p {
   margin: 0;
   color: #555;
+}
+
+.review-details span {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+  background: #ccc;
+  padding: 6px;
+  border-radius: 50%;
+  color: #333;
+}
+
+
+label, input {
+  display: block;
+}
+
+input {
+  padding: 10px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  width: 100%;
+  border: 1.5 solid #eee;
+  box-sizing: border-box;
+}
+
+form button {
+  background: #ddd;
+  border: 0;
+  padding: 10px;
+  cursor: pointer;
+  font-family: "Open Sans";
+}
+
+input.error {
+  border: 1.5px solid red;
+}
+
+div.error {
+  padding: 10px;
+  color: red;
+}
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;  /* Preferred icon size */
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Support for IE. */
+  font-feature-settings: 'liga';
 }
