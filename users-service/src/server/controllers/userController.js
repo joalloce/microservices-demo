@@ -1,4 +1,5 @@
 import { PrismaClient } from "@prisma/client";
+import validator from "validator";
 
 import hashPassword from "#root/helpers/hashPassword";
 import passwordCompareSync from "#root/helpers/passwordCompareSync";
@@ -16,10 +17,10 @@ export const login = async (req, res, next) => {
       },
     });
 
-    if (!userFetched) return next(new Error("Invalid email"));
+    if (!userFetched) return res.json({ error: "Invalid email" });
 
     if (!passwordCompareSync(password, userFetched.passwordHash)) {
-      return next(new Error("Invalid password"));
+      return res.json({ error: "Invalid password" });
     }
 
     return res.json(userFetched);
@@ -49,6 +50,24 @@ export const getUsers = async (req, res, next) => {
 export const createUser = async (req, res, next) => {
   try {
     const { email, name, password } = req.body;
+
+    if (!email || !name || !password) {
+      return res.json({ error: "Please fill all the fields correctly" });
+    }
+
+    if (!validator.isEmail(email)) {
+      return res.json({ error: "Invalid email" });
+    }
+
+    if (password.length < 6) {
+      return res.json({ error: "Password should be at least 6 characters" });
+    }
+
+    const findUser = await user.findUnique({ where: { email } });
+
+    if (findUser) {
+      return res.json({ error: "Email already in use" });
+    }
 
     let newUser = await user.create({
       data: {

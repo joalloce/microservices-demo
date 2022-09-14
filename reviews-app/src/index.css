@@ -20,7 +20,6 @@ header a {
 header div {
   color: grey;
   text-decoration: none;
-  cursor: pointer;
 }
 
 header .container {
@@ -30,6 +29,23 @@ header .container {
   display: flex;
   align-items: center;
   justify-content: space-around;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+}
+
+nav a {
+  margin-right: 20px;
+}
+
+nav button {
+  background: #ddd;
+  border: 0;
+  padding: 10px;
+  cursor: pointer;
+  font-family: "Open Sans";
 }
 
 .pages {
@@ -91,7 +107,6 @@ header .container {
   color: #333;
 }
 
-
 label, input {
   display: block;
 }
@@ -145,4 +160,14 @@ div.error {
 
   /* Support for IE. */
   font-feature-settings: 'liga';
+}
+
+form.login {
+  max-width: 300px;
+  margin: 20px auto;
+}
+
+form.signup {
+  max-width: 300px;
+  margin: 20px auto;
 }

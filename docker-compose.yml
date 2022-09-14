@@ -8,6 +8,7 @@ services:
     environment:
       - REVIEWS_SERVICE_URI=http://reviews-service:7200/api/reviews/
       - USERS_SERVICE_URI=http://users-service:7201/api/users/
+      - JWT_SECRET=sdfsdfherrewtertertertgdfgg
     ports:
       - 7100:7100
     volumes:
