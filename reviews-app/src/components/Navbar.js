@@ -9,7 +9,7 @@ const Navbar = () => {
 
   const handleClick = (e) => {
     e.preventDefault();
-    logout();
+    logout(); //logout
   };
 
   return (

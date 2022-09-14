@@ -11,7 +11,7 @@ import { requireAuth } from "../../middleware/requireAuth";
 
 const router = express.Router();
 
-router.use(requireAuth);
+router.use(requireAuth); // middleware to protect routes
 
 // id params
 router.delete("/:id", deleteReview);

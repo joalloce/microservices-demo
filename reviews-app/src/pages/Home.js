@@ -13,14 +13,14 @@ const Home = () => {
     const fetchReviews = async () => {
       const response = await fetch("http://localhost:7100/api/reviews/", {
         headers: {
-          Authorization: `Bearer ${user.token}`,
+          Authorization: `Bearer ${user.token}`, //token
         },
       });
 
       const json = await response.json();
 
       if (response.ok) {
-        dispatch({ type: "SET_REVIEWS", payload: json });
+        dispatch({ type: "SET_REVIEWS", payload: json }); // set reviews
       }
     };
 

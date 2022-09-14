@@ -17,8 +17,10 @@ export const login = async (req, res, next) => {
       },
     });
 
+    // check email
     if (!userFetched) return res.json({ error: "Invalid email" });
 
+    // check password
     if (!passwordCompareSync(password, userFetched.passwordHash)) {
       return res.json({ error: "Invalid password" });
     }
@@ -62,6 +64,7 @@ export const getUser = async (req, res, next) => {
       },
     });
 
+    // check if user exists
     if (!userFetched) return next(new Error("Invalid id"));
 
     return res.json(userFetched);
@@ -75,20 +78,24 @@ export const createUser = async (req, res, next) => {
   try {
     const { email, name, password } = req.body;
 
+    // check if a field is empty
     if (!email || !name || !password) {
       return res.json({ error: "Please fill all the fields correctly" });
     }
 
+    //check valid email
     if (!validator.isEmail(email)) {
       return res.json({ error: "Invalid email" });
     }
 
+    // password length > 6
     if (password.length < 6) {
       return res.json({ error: "Password should be at least 6 characters" });
     }
 
     const findUser = await user.findUnique({ where: { email } });
 
+    // check if email is already in use
     if (findUser) {
       return res.json({ error: "Email already in use" });
     }

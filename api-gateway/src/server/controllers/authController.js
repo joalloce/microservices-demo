@@ -20,11 +20,12 @@ export const login = async (req, res, next) => {
       ...req.body,
     });
 
+    // check if there is an error
     if (response.data.error) {
       return res.status(400).json(response.data);
     }
 
-    const token = createToken(response.data.id);
+    const token = createToken(response.data.id); // token created
 
     return res.json({
       name: response.data.name,
@@ -41,11 +42,12 @@ export const signup = async (req, res, next) => {
       ...req.body,
     });
 
+    // check if there is an error
     if (response.data.error) {
       return res.status(400).json(response.data);
     }
 
-    const token = createToken(response.data.id);
+    const token = createToken(response.data.id); // token created
 
     return res.json({
       name: response.data.name,

@@ -8,8 +8,8 @@ export const useLogout = () => {
   const logout = () => {
     localStorage.removeItem("user");
 
-    authDispatch({ type: "LOGOUT", payload: null });
-    reviewDispatch({ type: "SET_REVIEWS", payload: null });
+    authDispatch({ type: "LOGOUT", payload: null }); //logout
+    reviewDispatch({ type: "SET_REVIEWS", payload: null }); // set review to null
   };
 
   return { logout };

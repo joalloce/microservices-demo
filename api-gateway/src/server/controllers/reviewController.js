@@ -13,10 +13,12 @@ export const createReview = async (req, res, next) => {
 
     let emptyFields = [];
 
+    // check if title is empty
     if (!title) {
       emptyFields.push("title");
     }
 
+    // check if score is valid
     if (score < -1 && score > 10) {
       emptyFields.push("score");
     }
@@ -27,6 +29,7 @@ export const createReview = async (req, res, next) => {
         .json({ error: "Please fill all the fields correctly", emptyFields });
     }
 
+    // create review
     let response = await axios.post(`${REVIEWS_SERVICE_URI}`, { ...req.body });
 
     return res.json(response.data);
@@ -63,7 +66,7 @@ export const getReviews = async (req, res, next) => {
   try {
     let response = await axios.get(`${REVIEWS_SERVICE_URI}`);
 
-    let userReviews = response.data.filter((r) => r.user === req.user.id);
+    let userReviews = response.data.filter((r) => r.user === req.user.id); // filter all reviews by user id
 
     return res.json(userReviews);
   } catch (e) {
@@ -79,10 +82,12 @@ export const updateReview = async (req, res, next) => {
 
     let emptyFields = [];
 
+    // check if title is empty
     if (!title) {
       emptyFields.push("title");
     }
 
+    // check if score is valid
     if (score < -1 && score > 10) {
       emptyFields.push("score");
     }
@@ -90,9 +95,10 @@ export const updateReview = async (req, res, next) => {
     if (emptyFields.length) {
       return res
         .status(400)
-        .json({ error: "Please fill correctly all the fields", emptyFields });
+        .json({ error: "Please fill all the fields correctly", emptyFields });
     }
 
+    // update review
     let response = await axios.patch(`${REVIEWS_SERVICE_URI}${id}`, {
       ...req.body,
     });

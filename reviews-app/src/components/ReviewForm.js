@@ -15,19 +15,23 @@ const ReviewForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    //auth
     if (!user) {
       setError("You must be logged in");
+      return;
     }
 
-    const review = { title, score, user: user.id };
+    const review = { title, score, user: user.id }; // set user with user.id
+
     const response = await fetch("http://localhost:7100/api/reviews/", {
       method: "POST",
       body: JSON.stringify(review),
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${user.token}`,
+        Authorization: `Bearer ${user.token}`, // token
       },
     });
+
     const json = await response.json();
 
     if (!response.ok) {
@@ -40,7 +44,7 @@ const ReviewForm = () => {
       setTitle("");
       setScore(0);
       setEmptyFields([]);
-      dispatch({ type: "CREATE_REVIEW", payload: json });
+      dispatch({ type: "CREATE_REVIEW", payload: json }); // add review to reviews
     }
   };
   return (

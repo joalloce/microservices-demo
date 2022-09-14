@@ -12,11 +12,12 @@ const ReviewDetails = ({ review }) => {
     const res = await fetch("http://localhost:7100/api/reviews/" + review.id, {
       method: "DELETE",
       headers: {
-        Authorization: `Bearer ${user.token}`,
+        Authorization: `Bearer ${user.token}`, // token
       },
     });
+
     if (res.ok) {
-      dispatch({ type: "DELETE_REVIEW", payload: review });
+      dispatch({ type: "DELETE_REVIEW", payload: review }); // delete review from reviews
     }
   };
   return (

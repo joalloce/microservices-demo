@@ -15,7 +15,7 @@ export const reviewReducer = (state, action) => {
     case "DELETE_REVIEW":
       return {
         reviews: state.reviews.filter(
-          (review) => review.id !== action.payload.id
+          (review) => review.id !== action.payload.id // filter the deleted review
         ),
       };
     default:
